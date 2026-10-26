@@ -1,0 +1,21 @@
+
+.button {
+    border-radius: 12px;
+    background-color: var(--color-primary);
+    display: inline-block;
+    text-decoration: none;
+    border: 2px solid transparent;
+    & > span {
+        padding: 0.667em 1em;
+        color: #ffffff;
+        display: block
+    }
+
+    &:hover, &:focus {
+        background-color: #fff;
+        border: 2px solid var(--color-primary);
+        span{
+            color: var(--color-primary);
+        }
+    }
+}
