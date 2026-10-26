@@ -3,32 +3,32 @@ import { CollectionEntry, getCollection } from "astro:content";
 import { BlogSchema } from "../../content/config";
 import PostLayout from "../../layouts/PostLayout.astro";
 import createSlug from "../../lib/createSlug"
+const { slug } = Astro.params;
+
+let res = await fetch(`https://gatsbywp.local/wp-json/wp/v2/posts?slug=${slug}`);
+let [post] = await res.json();
 
 export async function getStaticPaths() {
-  const postEntries = await getCollection("blog");
-  return postEntries.map((entry) => ({
-    params: { slug: createSlug(entry.data.title, entry.slug) },
-    props: { entry },
+  let data = await fetch("https://gatsbywp.local/wp-json/wp/v2/posts");
+  let posts = await data.json();
+
+  return posts.map((post: any) => ({
+    params: { slug: post.slug },
+    props: { post: post },
   }));
 }
 
 interface Props {
-  entry: CollectionEntry<"blog">;
+  post: BlogSchema;
 }
 
-const { entry } = Astro.props;
-const post: BlogSchema = entry.data;
-const { Content } = await entry.render();
+
 ---
 
 <PostLayout
-  title={post.title}
-  description={post.description}
-  pubDate={post.pubDate}
-  heroImage={post.heroImage}
-  updatedDate={post.updatedDate}
-  badge={post.badge}
-  tags={post.tags}
+  title={post.title.rendered}
+  description={post.excerpt.rendered}
+  pubDate={post.date}
 >
-  <Content />
+  <Fragment set:html={post.content.rendered} />
 </PostLayout>

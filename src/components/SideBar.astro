@@ -12,10 +12,14 @@ const { sideBarActiveItemID } = Astro.props;
       <a href="/">
         <div class="avatar transition ease-in-out hover:scale-[102%] block m-auto">
           <div class="w-[8.5rem]">
-            <Image class="mask mask-circle" format="webp" width={300} height={300} src="/profile.webp" alt="Profile image" />
+            <!-- <Image class="mask mask-circle" format="webp" width={300} height={300} src="/profile.webp" alt="Profile image" /> -->
           </div>
         </div>
       </a>
+      <div class="mt-8">
+        <p><small>If you think we may be a good fit, please reach out.</small></p>
+        <a class="btn" href="https://www.linkedin.com/in/taruc/" target="_blank">Contact me on LinkedIn</a>
+      </div>
     </div>
     <SideBarMenu sideBarActiveItemID={sideBarActiveItemID} />
     <SideBarFooter />
