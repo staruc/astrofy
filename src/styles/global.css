@@ -1,7 +1,122 @@
+
+@import "tailwindcss";
+
+
+@theme {
+  --primary: #1B4238;
+  --color-text: #1B4238;
+}
+
+body {
+    color: var(--color-text);
+}
+ul, ol {
+    margin-left: 1.5rem;
+    @apply list-outside;
+}
+ul {
+    @apply list-disc;
+}
+ol {
+    @apply list-decimal;
+}
+li {
+    margin-bottom: 0.5rem;
+}
+
 .time-line-container>div:last-child .education__time>.education__line {
     display: none;
 }
 
-@theme {
-  --primary: #1B4238;
+@media (min-width: 1024px) {
+    .lg\:drawer-open>.drawer-toggle {
+        display: none;
+    }
+    .lg\:drawer-open>.drawer-toggle~.drawer-side {
+        pointer-events: auto;
+        visibility: visible;
+        position: sticky;
+        display: block;
+        width: auto;
+        overscroll-behavior: auto;
+    }
+}
+
+.drawer {
+    position: relative;
+    display: grid;
+    grid-auto-columns: max-content auto;
+    width: 100%;
+}
+.drawer-toggle {
+    position: fixed;
+    height: 0px;
+    width: 0px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    opacity: 0;
+}
+.drawer-content {
+    grid-column-start: 2;
+    grid-row-start: 1;
+}
+.drawer-side {
+    pointer-events: none;
+    position: fixed;
+    inset-inline-start: 0px;
+    top: 0;
+    grid-column-start: 1;
+    grid-row-start: 1;
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-rows: repeat(1, minmax(0, 1fr));
+    align-items: flex-start;
+    justify-items: start;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    height: 100vh;
+    height: 100dvh;
+    scrollbar-width: none;
+}
+
+
+.btn {
+    display: inline-flex;
+    height: 3rem;
+    min-height: 3rem;
+    flex-shrink: 0;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--rounded-btn, .5rem);
+    border-color: transparent;
+    border-color: oklch(var(--btn-color, var(--b2)) / var(--tw-border-opacity));
+    padding-left: 1rem;
+    padding-right: 1rem;
+    text-align: center;
+    font-size: .875rem;
+    line-height: 1em;
+    gap: .5rem;
+    font-weight: 600;
+    text-decoration-line: none;
+    transition-duration: .2s;
+    transition-timing-function: cubic-bezier(0, 0, .2, 1);
+    border-width: var(--border-btn, 1px);
+    animation: button-pop var(--animation-btn, .25s) ease-out;
+    transition-property: color, background-color, border-color, opacity, box-shadow, transform;
+    --tw-text-opacity: 1;
+    color: var(--fallback-bc, oklch(var(--bc) / var(--tw-text-opacity)));
+    --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / .05);
+    --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    outline-color: var(--fallback-bc, oklch(var(--bc) / 1));
+    background-color: oklch(var(--btn-color, var(--b2)) / var(--tw-bg-opacity));
+    --tw-bg-opacity: 1;
+    --tw-border-opacity: 1;
 }
